@@ -4,7 +4,7 @@ const db = require('./db');
 
 app.use(express.json());
 
-app.get('/datos', (req, res) => {
+app.get('/', (req, res) => {
     db.query('SELECT * FROM registro', (error, results) => {
         if (error) {
             return res.status(500).json({ error: error.message });
@@ -13,7 +13,9 @@ app.get('/datos', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
+
+module.exports = app;
