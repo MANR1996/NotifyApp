@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
     });
 });
 
+app.post('/save-token', (req, res) => {
+    const token = req.body.token;
+    const sql = 'INSERT INTO tokens (token) VALUES (?)';
+    db.query(sql, [token], (err, result) => {
+      if (err) throw err;
+      res.send('Token saved');
+    });
+  });  
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
